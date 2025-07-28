@@ -1,0 +1,35 @@
+<div class="todo-form-container">
+  <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="todo-form">
+    <div class="input-wrapper">
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="3"
+        cdkAutosizeMaxRows="6"
+        placeholder="What to do?"
+        formControlName="title"
+        class="input-field">
+      </textarea>
+      <div *ngIf="form.get('title')?.invalid && form.get('title')?.touched" class="error">
+        Field is required
+      </div>
+    </div>
+
+    <div class="input-wrapper">
+      <select formControlName="priority" class="priority-select">
+        <option value="" disabled selected>Priority</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <div *ngIf="form.get('priority')?.invalid && form.get('priority')?.touched" class="error">
+        Priority is required
+      </div>
+    </div>
+    
+    <button type="submit" [disabled]="form.invalid" class="button">
+      {{ isEdit ? 'Update' : 'Add' }}
+    </button>
+  </form>
+</div>
+

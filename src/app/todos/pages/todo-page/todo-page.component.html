@@ -1,0 +1,29 @@
+<div class="todo-page">
+  <div class="filters">
+    <select [(ngModel)]="filter" (change)="applyFilterAndSort()" class="select">
+      <option value="all">All</option>
+      <option value="completed">Completed</option>
+      <option value="incomplete">Incomplete</option>
+    </select>
+
+    <select [(ngModel)]="sortByPriority" (change)="applyFilterAndSort()" class="select">
+      <option value="none">Without sort</option>
+      <option value="desc">Priority: higher to lower</option>
+      <option value="asc">Priority: lower to higher</option>
+    </select>
+  </div>
+  <div class="content">
+    <div class="todo-form-container">
+      <app-todo-form [todo]="currentTodo" [isEdit]="editMode" (save)="onSave($event)"></app-todo-form>
+    </div>
+    <div class="todo-list-container">
+      <app-todo-list
+        [todos]="todos"
+        (update)="onUpdate($event)"
+        (edit)="onEdit($event)"
+        (remove)="onDelete($event)">
+      </app-todo-list>
+    </div>
+  </div>
+</div>
+

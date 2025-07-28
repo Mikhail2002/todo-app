@@ -1,0 +1,13 @@
+<div class="todo-item">
+  <div class="main-block">
+    <input type="checkbox" [(ngModel)]="todo.completed" (change)="update.emit(todo)" class="checkbox">
+    <p [class.completed]="todo.completed" class="todo-title">{{ todo.title }}</p>
+    <div class="priority-label">
+      <app-priority-label [priority]="todo.priority"></app-priority-label>
+    </div>
+  </div>
+  <div class="actions-block">
+    <button (click)="edit.emit(todo)" class="button">Edit</button>
+    <button (click)="remove.emit(todo.id)" class="button">Delete</button>
+  </div>
+</div>
